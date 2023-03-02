@@ -2,7 +2,12 @@
 
 function Home() {
   return (
-    <div>Home</div>
+    <div>
+      
+      <h3>Bienvenidos a mi pagina de Pokemon</h3>
+      <p>powered by: pokeAPI</p>
+
+    </div>
   )
 }
 

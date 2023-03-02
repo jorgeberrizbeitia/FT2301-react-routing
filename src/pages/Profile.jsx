@@ -3,16 +3,19 @@ import { useParams } from "react-router-dom";
 
 function Profile() {
 
-  const algo = useParams()
-  console.log("useParams()", algo)
+  const params = useParams()
+  console.log("useParams()", params)
+  const { username } = useParams()
+
+  // llamar al backend o a una API (accediendo a rutas de BE) para traer informacion
 
   return (
     <div>
       
-      <h3>Este es el perfil de un usuario. {algo.username}</h3>
+      <h3>Este es el perfil de un usuario. {params.username}</h3>
 
       <p>La info de este usuario es:</p>
-      {algo.username === "bob" ? <p>hobbies: Atrapas medusas</p> : <p>hobbies: ser infeliz</p>}
+      {params.username === "bob" ? <p>hobbies: Atrapas medusas</p> : <p>hobbies: ser infeliz</p>}
 
 
     </div>

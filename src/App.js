@@ -1,49 +1,46 @@
-import logo from './logo.svg';
-import './App.css';
-import TimerControl from './components/TimerControl';
-
-import { Routes, Route, Link } from 'react-router-dom';
-import Home from './pages/Home';
-import About from './pages/About';
-import Profile from './pages/Profile';
+import { useEffect, useState } from "react"
+import { Route, Routes } from "react-router-dom"
+import "./App.css"
+import PokeNav from "./components/PokeNav"
+import Home from "./pages/Home"
+import PokeCard from "./pages/PokeCard"
+import axios from "axios"
 
 function App() {
+
+  const [ allPokemons, setAllPokemons ] = useState([])
+
+
+  useEffect(() => {
+    // buscar la info de la API
+    // usaremos axios para buscar la data (podrias usar fetch)
+    // el momento en el que SIEMPRE debemos contactar a una API para recibir data es componentDidMount
+    axios.get("https://pokeapi.co/api/v2/pokemon")
+    .then((response) => {
+      console.log(response)
+      setAllPokemons(response.data.results)
+    })
+    .catch(() => {
+
+    })
+  }, [])
+
   return (
     <div className="App">
-      {/* <TimerControl />
-      <TimerControl />
-      <TimerControl />
-      <TimerControl />
-      <TimerControl />
-      <TimerControl />
-      <TimerControl /> */}
+      
+      <PokeNav allPokemons={allPokemons}/>
 
-      {/* Organizamos nuestras rutas de Frontend */}
-
-
-      <nav>
-        {/* <a href="/">Home</a>
-        <a href="/about">About</a> */}
-        {/* nunca debemos usar <a>, en vez de eso, usamos <Link> y <NavLink> */}
-        <Link to="/">Home</Link>
-        <Link to="/about">About</Link>
-        <br />
-        <Link to="/profile/bob">Profile Bob</Link>
-        <br />
-        <Link to="/profile/calamardo">Profile Calamardo</Link>
-      </nav>  
 
       <Routes>
-        {/* todo lo que hay dentro de las rutas está condicionado */}
-        <Route path="/" element={ <Home /> }/>
-        <Route path="/about" element={ <About /> }/>
-        <Route path="/profile/:username" element={ <Profile /> }/>
+
+        <Route path="/" element={ <Home />} />
+        <Route path="/pokemon-details/:pokename" element={ <PokeCard /> }/>
 
       </Routes>
 
 
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
