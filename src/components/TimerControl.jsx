@@ -19,7 +19,7 @@ function TimerControl() {
         {isTimerShowing === true ? "Ocultar" : "Mostrar"} Timer
       </button>
 
-      { isTimerShowing === true ? <Timer /> : null }
+      { isTimerShowing === true ? <Timer setIsTimerShowing={setIsTimerShowing}/> : null }
 
       
 
