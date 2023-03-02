@@ -15,7 +15,9 @@ function PokeNav(props) {
       <hr />
       {allPokemons.map((eachPokemon) => {
         return (
-          <p>{eachPokemon.name}</p>
+          <p key={eachPokemon.name}>
+            <Link to={`/pokemon-details/${eachPokemon.name}`}>{eachPokemon.name}</Link>
+          </p>
         )
       })}
 
